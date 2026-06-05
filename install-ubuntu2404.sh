@@ -18,6 +18,7 @@ echo "[5/6] Add Config Filebeat service..."
 sudo filebeat modules enable system logstash
 sudo filebeat modules enable system auditd
 sleep 2
+sudo cp auditd.conf /etc/audit/auditd.conf
 sudo cp logstash.yml /etc/filebeat/modules.d/logstash.yml
 sudo cp auditd.yml /etc/filebeat/modules.d/auditd.yml
 sudo cp filebeat.yml /etc/filebeat/filebeat.yml
