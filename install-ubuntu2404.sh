@@ -15,8 +15,8 @@ sudo apt-get update -y
 sudo apt-get install -y filebeat
 sudo apt install auditd audispd-plugins -y
 echo "[5/6] Add Config Filebeat service..."
-sudo filebeat modules enable system logstash
-sudo filebeat modules enable system auditd
+sudo filebeat modules enable logstash
+sudo filebeat modules enable auditd
 sleep 2
 sudo cp auditd.conf /etc/audit/auditd.conf
 sudo cp logstash.yml /etc/filebeat/modules.d/logstash.yml
