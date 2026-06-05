@@ -13,6 +13,7 @@ echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://arti
 echo "[4/6] Updating package lists and installing Filebeat..."
 sudo apt-get update -y
 sudo apt-get install -y filebeat
+sudo apt install auditd audispd-plugins -y
 echo "[5/6] Add Config Filebeat service..."
 sudo filebeat modules enable system logstash
 sudo filebeat modules enable system auditd
@@ -20,8 +21,12 @@ sleep 2
 sudo cp logstash.yml /etc/filebeat/modules.d/logstash.yml
 sudo cp auditd.yml /etc/filebeat/modules.d/auditd.yml
 sudo cp filebeat.yml /etc/filebeat/filebeat.yml
+sudo cp custom.rules /etc/audit/rules.d/custom.rules
 sleep 2
+sudo augenrules --load
 echo "[6/6] Enabling and starting Filebeat service..."
+sudo systemctl enable auditd
+sudo systemctl start auditd
 sudo systemctl enable filebeat
 sudo systemctl start filebeat
 echo "=========================================="

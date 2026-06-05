@@ -1,0 +1,8 @@
+# ติดตามการแก้ไข (w) หรือเปลี่ยนสิทธิ์ (a) ของไฟล์ /etc/passwd
+-w /etc/passwd -p wa -k passwd_changes
+
+# ติดตามไฟล์ /etc/shadow
+-w /etc/shadow -p wa -k shadow_changes
+
+# ติดตามการเข้าถึง/แก้ไขโฟลเดอร์ /etc/sudoers.d
+-w /etc/sudoers.d/ -p wa -k sudoers_changes
